@@ -2,9 +2,9 @@ import { screen, render } from 'test-utils/testing-library-utils';
 import {
   ModalSimple,
   ModalOverlay
-} from 'stories/framework/molecules';
+} from 'stories//molecules';
 import { Modal } from './Modal';
-import { Colors, Opacity } from 'framework/ui/system/theme';
+import { Colors, Opacity } from '/ui/system/theme';
 
 describe('Modal component test', () => {
   it('Have Modal', async () => {

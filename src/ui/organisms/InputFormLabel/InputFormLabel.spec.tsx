@@ -1,7 +1,7 @@
 import { render, screen } from 'test';
 import { InputFormLabelForm } from '@stories';
 
-describe('framework/organisms/InputFormLabel', () => {
+describe('/organisms/InputFormLabel', () => {
   const onInputChange = jest.fn();
   it('should render successfully', () => {
     render(

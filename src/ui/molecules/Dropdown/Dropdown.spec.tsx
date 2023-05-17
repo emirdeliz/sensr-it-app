@@ -14,7 +14,7 @@ const renderDropdown = async (
   return baseElement;
 };
 
-describe('framework/ui/molecules/Dropdown', () => {
+describe('/ui/molecules/Dropdown', () => {
   describe('Dropdown component test', () => {
     it('Have Dropdown', async () => {
       const { container: dropdownNode } = render(<DropdownSimple />);

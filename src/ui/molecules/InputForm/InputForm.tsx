@@ -17,7 +17,12 @@ export const InputForm = ({
   const id = children ? children.replace(/\s/g, '_') : String(props.id);
   return (
     <FormGroup label={children} target={id} {...props}>
-      <Input id={id} value={value} onChange={(e) => onChange && onChange(e.target.value)} />
+      <Input
+        {...props}
+        id={id}
+        value={value}
+        onChange={(e) => onChange && onChange(e.target.value)}
+      />
     </FormGroup>
   );
 };

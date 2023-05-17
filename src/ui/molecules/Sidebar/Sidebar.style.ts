@@ -23,7 +23,7 @@ export const SidebarMenu = styled.div<{ close: boolean }>`
 	flex: 1;
 	width: 250px;
 	padding-top: 50px;
-	background-color: #000080;
+	background-color: ${({ theme }) => theme.colors.P2};
 	position: absolute;
 	top: 0;
 	bottom: 0;
@@ -44,13 +44,13 @@ export const MenuItemLinks = styled.a`
 	align-items: center;
 	font-size: 20px;
 	text-decoration: none;
-	color: #ffffff;
+	color: ${({ theme }) => theme.colors.White};
 	padding: 15px 10px;
 	width: 100%;
 	cursor: pointer;
 
 	&:hover {
-		background-color: #ffffff;
+		background-color: ${({ theme }) => theme.colors.White};
 		${TitleStyle.Title} {
 			color: blue;
 		}

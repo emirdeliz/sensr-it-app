@@ -1,7 +1,8 @@
 import { Product } from '@api';
-import { TableMaintenance } from '@templates'
+import { ModalFormMaintenance, TableMaintenance } from '@templates'
 import { GenericObject } from '@types';
 import { useState } from 'react';
+import { ProductForm } from './components/ProductForm/ProductForm';
 
 const dataSource = [
   { id: 1, name: 'Caneta azul', price: 5.20, description: 'Caneta azul da marca FaberCastell' },
@@ -20,12 +21,37 @@ export const ProductPage = () => {
   ] as GenericObject;
 
   return (
-    <TableMaintenance<Product>
-      title="Produtos"
-      columns={columns}
-      dataSource={products}
-      onEdit={(data) => setSelectedProduct(data)}
-      onConfirmDelete={item => setProducts(products.filter(u => u.id !== item?.id))}
-    />
+    <>
+      <ModalFormMaintenance
+        visible={!!selectedProduct}
+        onClose={() => setSelectedProduct(undefined)}
+      >
+        <ProductForm
+          initialData={selectedProduct}
+          onSave={(data) => { 
+            if (data.id) { 
+              setProducts(products.map(u => { 
+                if (u?.id === data.id) { 
+                  return data;
+                }
+                return u;
+              }))
+            } else {
+              data.id = products.length + 1;
+              setProducts([...products, data]);
+            }
+            setSelectedProduct(undefined);
+          }}
+        />
+      </ModalFormMaintenance>
+      <TableMaintenance<Product>
+        title="Produtos"
+        columns={columns}
+        dataSource={products}
+        onAdd={() => setSelectedProduct({})}
+        onEdit={(data) => setSelectedProduct(data)}
+        onConfirmDelete={item => setProducts(products.filter(u => u.id !== item?.id))}
+      />
+    </>
   );
 }

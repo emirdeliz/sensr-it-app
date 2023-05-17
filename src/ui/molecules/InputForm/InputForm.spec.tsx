@@ -2,7 +2,7 @@ import { fireEvent } from '@testing-library/react';
 import { render } from '@test';
 import { InputForm } from './InputForm';
 
-describe('framework/ui/molecules/InputForm', () => {
+describe('/ui/molecules/InputForm', () => {
   const PASSWORD_ID = 'test-input-password';
   it('Should show error when password has less than required characters', async () => {
     const pass = '';

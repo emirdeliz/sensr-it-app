@@ -31,6 +31,7 @@ export interface InputProps
   rg?: boolean;
   cpf?: boolean;
   cnpj?: boolean;
+  currency?: boolean;
   phone?: boolean;
   barcode?: boolean;
   placeholder?: string;
@@ -168,7 +169,7 @@ const InputDate = ({
 
 export const applyMaskMaybe = (
   value: string | number | Date | null | undefined | boolean,
-  { cpf, cnpj, phone, barcode, rg, countryState }: InputProps
+  { cpf, cnpj, currency, barcode, phone, rg, countryState }: InputProps
 ) => {
   if (value === undefined) {
     return '';
@@ -187,6 +188,8 @@ export const applyMaskMaybe = (
       return helpers.maskRG(valueAsString);
     case countryState:
       return helpers.maskCountryState(valueAsString);
+    case currency:
+      return helpers.maskMoney(valueAsString);
     default:
       return valueAsString;
   }
@@ -220,6 +223,7 @@ export const Input = ({
   rg,
   cpf,
   cnpj,
+  currency,
   phone,
   number,
   textarea,
@@ -258,6 +262,7 @@ export const Input = ({
             phone,
             barcode,
             countryState,
+            currency,
           })}
         </Title>
       </S.ReadOnly>
@@ -275,12 +280,14 @@ export const Input = ({
         phone,
         barcode,
         countryState,
+        currency,
       })}
       dataTestId={dataTestId}
       onChange={(e) => {
         const eventMask = { ...e };
         if ((cpf || cnpj || phone || barcode) && eventMask.target) {
-          const valueMask = helpers.getNumbersOfString(e?.target.value);
+          const valueMask = currency ? e?.target.value.replace('.', '').replace(',', '')
+          : helpers.getNumbersOfString(e?.target.value);
           eventMask.target.value = valueMask;
         }
 

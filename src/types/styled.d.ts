@@ -11,7 +11,7 @@ import {
   Radius,
   Shadow,
   ZIndex,
-} from 'framework/ui/system/theme';
+} from '@theme';
 
 declare module 'styled-components' {
   export interface DefaultTheme {
