@@ -22,6 +22,7 @@ export const ProposalPage = () => {
       title="Propostas"
       columns={columns}
       dataSource={proposals}
+      onAdd={() => setSelectedProposal({})}
       onEdit={(data) => setSelectedProposal(data)}
       onConfirmDelete={item => setProposals(proposals.filter(u => u.id !== item?.id))}
     />
